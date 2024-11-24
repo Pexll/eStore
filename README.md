@@ -1,5 +1,5 @@
 
-# [Project Name]
+# [eStore]
 
 Welcome to the eStore repository! This project provides a customizable e-commerce template for developers and businesses. 
 
