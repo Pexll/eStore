@@ -1,5 +1,5 @@
 
-# [eStore]
+# eStore
 
 Welcome to the eStore repository! This project provides a customizable e-commerce template for developers and businesses. 
 
@@ -19,11 +19,15 @@ Welcome to the eStore repository! This project provides a customizable e-commerc
    ```bash
    git clone https://github.com/Pexll/eStore.git
    ```
-2. Install dependencies:
+2. Change directory:
+   ```bash
+   cd e_store
+   ```
+3. Install dependencies:
    ```bash
    npm install
    ```
-3. Run the application:
+4. Run the application:
    ```bash
    npm start
    ```
