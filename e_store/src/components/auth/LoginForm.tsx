@@ -1,24 +1,20 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema } from '@/lib/auth/validation';
-import { useAuth } from '@/hooks/auth/useAuth';
-import type { LoginCredentials } from '@/types/auth';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FormContainer, InputField } from '@/components/auth/FormAnimations';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@/lib/auth/validation";
+import { useAuth } from "@/hooks/auth/useAuth";
+import type { LoginCredentials } from "@/types/auth";
+import { motion, AnimatePresence } from "framer-motion";
+import { FormContainer, InputField } from "@/components/auth/FormAnimations";
 
 // Add this with other icon components
 function GoogleIcon({ className = "w-6 h-6" }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 24 24" 
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
         fill="#4285F4"
@@ -42,11 +38,7 @@ function GoogleIcon({ className = "w-6 h-6" }) {
 // Add this with the other icon components
 function AppleIcon({ className = "w-6 h-6" }) {
   return (
-    <svg 
-      className={className} 
-      viewBox="0 0 24 24" 
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg className={className} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M17.05 20.28c-.98.95-2.05.94-3.12.47-1.12-.48-2.14-.48-3.31 0-1.47.62-2.25.44-3.12-.47C3.33 16.09 3.96 9.46 8.37 9.15c1.18.04 2.04.41 2.78.41.74 0 2.13-.49 3.59-.42 1.16.03 2.23.49 3.08 1.37-2.42 1.46-2.03 4.96.58 6.16-.67 1.96-1.57 3.94-3.35 3.61zM15.8 9.1c-.89-1.68-.63-3.86.69-5.18 1.47 1.1 2.23 3.22 1.38 5.18h-2.07z"
         fill="currentColor"
@@ -59,7 +51,7 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const { login, isLoading } = useAuth();
-  const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
+  const [loginMethod, setLoginMethod] = useState<"email" | "phone">("email");
   const [rememberMe, setRememberMe] = useState(false);
 
   const {
@@ -73,7 +65,7 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginCredentials) => {
     const response = await login(data);
     if (response) {
-      router.push('/dashboard'); // Redirect to dashboard after successful login
+      router.push("/dashboard"); // Redirect to dashboard after successful login
     }
   };
 
@@ -90,17 +82,17 @@ export default function LoginForm() {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => handleSocialLogin('google')}
+            onClick={() => handleSocialLogin("google")}
             className="flex items-center justify-center space-x-2 px-4 py-3 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200"
           >
             <GoogleIcon className="w-5 h-5" />
             <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">Google</span>
           </motion.button>
-          
+
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => handleSocialLogin('apple')}
+            onClick={() => handleSocialLogin("apple")}
             className="flex items-center justify-center space-x-2 px-4 py-3 rounded-lg bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-200"
           >
             <AppleIcon className="w-5 h-5" />
@@ -123,15 +115,15 @@ export default function LoginForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
         {/* Login Method Toggle */}
         <div className="bg-neutral-100/50 dark:bg-neutral-800/50 p-1 rounded-lg flex">
-          {['email', 'phone'].map((method) => (
+          {["email", "phone"].map((method) => (
             <button
               key={method}
               type="button"
-              onClick={() => setLoginMethod(method as 'email' | 'phone')}
+              onClick={() => setLoginMethod(method as "email" | "phone")}
               className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-all duration-200 ${
                 loginMethod === method
-                  ? 'bg-white dark:bg-neutral-700 text-primary-600 dark:text-primary-400 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200'
+                  ? "bg-white dark:bg-neutral-700 text-primary-600 dark:text-primary-400 shadow-sm"
+                  : "text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-200"
               }`}
             >
               {method.charAt(0).toUpperCase() + method.slice(1)}
@@ -140,7 +132,7 @@ export default function LoginForm() {
         </div>
 
         <AnimatePresence mode="wait">
-          {loginMethod === 'email' ? (
+          {loginMethod === "email" ? (
             <motion.div
               key="email"
               initial={{ opacity: 0, y: 10 }}
@@ -150,18 +142,18 @@ export default function LoginForm() {
             >
               <InputField
                 label="Email address"
-                {...register('email')}
+                {...register("email")}
                 type="email"
                 placeholder="example@gmail.com"
                 error={errors.email?.message}
                 className="bg-neutral-50 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700 focus:border-primary-500 dark:focus:border-primary-400"
               />
-              
+
               <div className="relative">
                 <InputField
                   label="Password"
-                  {...register('password')}
-                  type={showPassword ? 'text' : 'password'}
+                  {...register("password")}
+                  type={showPassword ? "text" : "password"}
                   placeholder="********"
                   error={errors.password?.message}
                   className="bg-neutral-50 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700 focus:border-primary-500 dark:focus:border-primary-400"
@@ -210,7 +202,15 @@ export default function LoginForm() {
             Forgot password?
           </Link>
         </div>
-
+        <div>
+          Don&apos;t have an account?{" "}
+          <Link
+            className="text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300"
+            href={"/register"}
+          >
+            Signup
+          </Link>
+        </div>
         <motion.button
           type="submit"
           whileHover={{ scale: 1.01 }}
@@ -237,15 +237,19 @@ export default function LoginForm() {
 // Icon Components
 function EyeIcon({ className = "h-6 w-6" }) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      fill="none" 
-      viewBox="0 0 24 24" 
-      strokeWidth={1.5} 
-      stroke="currentColor" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
       className={className}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+      />
       <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
     </svg>
   );
@@ -253,38 +257,30 @@ function EyeIcon({ className = "h-6 w-6" }) {
 
 function EyeOffIcon({ className = "h-6 w-6" }) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      fill="none" 
-      viewBox="0 0 24 24" 
-      strokeWidth={1.5} 
-      stroke="currentColor" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
       className={className}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+      />
     </svg>
   );
 }
 
 function LoadingSpinner({ className = "h-6 w-6" }) {
   return (
-    <svg 
-      className={className} 
-      xmlns="http://www.w3.org/2000/svg" 
-      fill="none" 
-      viewBox="0 0 24 24"
-    >
-      <circle 
-        className="opacity-25" 
-        cx="12" 
-        cy="12" 
-        r="10" 
-        stroke="currentColor" 
-        strokeWidth="4"
-      />
-      <path 
-        className="opacity-75" 
-        fill="currentColor" 
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path
+        className="opacity-75"
+        fill="currentColor"
         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
       />
     </svg>
