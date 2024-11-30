@@ -72,6 +72,7 @@ export default function LoginForm() {
   // Social login handlers
   const handleSocialLogin = (provider: string) => {
     // Implement social login logic
+    console.log(`Logging in with ${provider}`);
   };
 
   return (
