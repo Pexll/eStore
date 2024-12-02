@@ -9,6 +9,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        zIndex: {
+          '50': '50',
+        },
+        maxWidth: {
+          'md': '28rem',
+        },
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
@@ -83,6 +89,7 @@ export default {
           '0%': { transform: 'translateY(-20px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        
       },
     },
   },
