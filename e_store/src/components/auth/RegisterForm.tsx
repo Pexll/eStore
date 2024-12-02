@@ -136,8 +136,7 @@ export default function RegisterForm() {
   };
 
   const onSubmit = async (data: ExtendedRegisterData) => {
-    const response = await registerUser(data);
-    // Handle response if needed
+    await registerUser(data);
   };
 
   const handleCreateAccount = () => {

@@ -77,7 +77,7 @@ export default function ConfirmationModal({ onConfirm }: ConfirmationModalProps)
           </div>
           <h2 className="text-2xl font-semibold mb-4 text-center">Confirm your email</h2>
           <p className="text-neutral-600 dark:text-neutral-400 mb-6 text-center">
-            We've sent a confirmation code to your email. Please enter it below to complete your registration.
+            We&apos;ve sent a confirmation code to your email. Please enter it below to complete your registration.
           </p>
           <div className="flex justify-center space-x-4 mb-6">
             {confirmationCode.map((digit, index) => (
@@ -115,7 +115,7 @@ export default function ConfirmationModal({ onConfirm }: ConfirmationModalProps)
             )}
           </motion.button>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 text-center mt-4">
-            Didn't receive the code?{" "}
+          Didn&apos;t receive the code?{" "}
             <button className="text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300">
               Resend
             </button>
