@@ -6,9 +6,14 @@ import ConfirmationModal from "@/components/auth/ConfirmationModal";
 export default function ConfirmationPage() {
   const router = useRouter();
 
-  const handleConfirmation = () => {
-    // Perform any necessary actions after confirmation
-    router.push("/dashboard");
+  const handleConfirmation = async () => {
+    try {
+      // Only return true to show success modal, don't redirect here
+      return true;
+    } catch (error) {
+      console.error('Confirmation failed:', error);
+      return false;
+    }
   };
 
   return (
