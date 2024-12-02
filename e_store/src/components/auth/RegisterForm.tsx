@@ -137,8 +137,12 @@ export default function RegisterForm() {
 
   const onSubmit = async (data: ExtendedRegisterData) => {
     const response = await registerUser(data);
-    if (response) {
-      router.push("/dashboard");
+    // Handle response if needed
+  };
+
+  const handleCreateAccount = () => {
+    if (isStepValid(currentStep)) {
+      router.push("/confirmation");
     }
   };
 
@@ -324,7 +328,7 @@ export default function RegisterForm() {
           )}
           <motion.button
             type={currentStep === steps.length - 1 ? "submit" : "button"}
-            onClick={() => (currentStep < steps.length - 1 ? handleNext() : undefined)}
+            onClick={() => (currentStep < steps.length - 1 ? handleNext() : handleCreateAccount())}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="px-6 py-3 rounded-lg flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
